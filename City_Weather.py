@@ -1,32 +1,3 @@
-'''
-# coding=utf-8
-import urllib
-from city import city
-import json
-
-
-def search_weather(cityname):
-    try:
-        citycode = city[cityname]
-    except:
-        return ("找不到该城市")
-
-    if citycode:
-        try:
-            url = "http://www.weather.com.cn/data/cityinfo/" + citycode + ".html"  # 构造网址
-            content = urllib.urlopen(url).read()  # 读取网页源代码
-            data = json.loads(content)  # 使用json库将字符转化为字典
-            # print type(data)
-            # print (content)
-            res = data["weatherinfo"]  # 获取字典
-            str_temp = ("%s :%s~%s") % (res["weather"], res["temp1"], res["temp2"])  # 格式化字符
-            print(str_temp)
-            # 输出天气信息
-        except:
-            return ("系统掉线了呢。。。。")
-
-
-    '''
 #coding=utf-8
 from urllib.request import urlopen
 from bs4 import BeautifulSoup
