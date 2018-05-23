@@ -1,6 +1,7 @@
 import os
 def find_files(path, wanted):
     try:
+        outpath=''
         # 盘符内所有文件（夹）的路径
         dir_list = os.listdir(path)
         for filename in dir_list:
@@ -12,7 +13,8 @@ def find_files(path, wanted):
             # 若是文件，检查文件名里是否含有关键字, 应该不区分大小写，特别是针对后缀名时比较方便
             elif os.path.isfile(new_path):
                 if wanted.lower() in filename.lower():
-                    print(new_path)
+                    outpath=outpath+'\n'+new_path
+        return outpath
     except Exception as e:
         print(e)
 
@@ -22,4 +24,4 @@ if __name__ == '__main__':
     print('C:\\findall.txt\n==========================================')
     path = input('输入想要查找的文件夹>> ')
     extend = input('后缀名>> ')
-    find_files(path, extend)
+    print(find_files(path, extend))
