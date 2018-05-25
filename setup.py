@@ -48,7 +48,7 @@ class MainWindow(QMainWindow,Ui_MainWindow):
             res = requests.get(url)  # 得到网页HTML代码
             res.encoding = 'utf-8'  # 防止中文乱码
             jd = json.loads(res.text)  # 将得到的json格式的信息转换为Python的字典格式
-            return ('小七>> ' + jd['text'])
+            return ('小七>> \n' + jd['text'])
 
 if __name__ == '__main__':
     app=QApplication([])
