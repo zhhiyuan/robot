@@ -1,10 +1,10 @@
 import json,requests,re
-from PyQt5.QtWidgets import  *
-from mainwindow import Ui_MainWindow
+from PyQt5.QtWidgets import *
+from UI import Ui_MainWindow
 import Move_File,SearchFile,jokes,City_Weather
 import easygui as eg
 
-key = '8c657754851549ceb9f474daf9694df7'  # 单图灵机器人key
+key = '8c657754851549ceb9f474daf9694df7'  # 图灵机器人key
 
 
 class MainWindow(QMainWindow,Ui_MainWindow):
@@ -23,7 +23,7 @@ class MainWindow(QMainWindow,Ui_MainWindow):
     def Function(self,info):
         if re.match(u"^([\u4e00-\u9fa5])+你会干什么+[\u4e00-\u9fa5]", info) or re.match(u"^你会干什么",
             info) or re.match(u"^([\u4e00\u9fa5])+你会干什么", info) or re.match(u"^你会干什么+[\u4e00-\u9fa5]", info):
-            msg = '小七>>我会的可多啦！\n你可以叫我帮你整理文件、查找文件、讲笑话、查天气...\n我还会许多东西呢!\n来和我聊天吧！'
+            msg = '小七>>\n我会的可多啦！\n你可以叫我帮你整理文件、查找文件、讲笑话、查天气...\n我还会许多东西呢!\n来和我聊天吧！'
             return msg
         elif re.match(u"^([\u4e00-\u9fa5])+文件整理+[\u4e00-\u9fa5]", info) or re.match(u"^(文件整理)", info) or re.match(
                 u"^([\u4e00-\u9fa5])+整理文件+[\u4e00-\u9fa5]", info) or re.match(u"^整理文件", info):
@@ -37,12 +37,12 @@ class MainWindow(QMainWindow,Ui_MainWindow):
                 u"^文件查找", info) or re.match(u"^([\u4e00-\u9fa5])+文件查找+[\u4e00-\u9fa5]", info):
             path = QFileDialog.getExistingDirectory()   #打开文件夹
             wanted = eg.enterbox(msg='你要查找的文件拓展名是什么呢:', title='小七-查找文件')
-            return '小七>>你要找的文件有没有在下面呀：\n' + SearchFile.find_files(path, wanted)
+            return '小七>>\n你要找的文件有没有在下面呀：\n' + SearchFile.find_files(path, wanted)
         elif re.match(u"^([\u4e00-\u9fa5])+笑话+[\u4e00-\u9fa5]", info) or re.match(u"^([\u4e00-\u9fa5])+笑话", info):
-            return '小七>>好呀好呀，最喜欢给主人讲笑话了：\n' + jokes.get_jokes()
+            return '小七>\n好呀好呀，最喜欢给主人讲笑话了：\n' + jokes.get_jokes()
         elif re.match(u"^([\u4e00-\u9fa5])+市+[\u4e00-\u9fa5]", info):
             m = re.match(u"^([\u4e00-\u9fa5])+市", info)
-            return ('小七>> ' + City_Weather.search_weather(m.group(0)[:-1]))  # 输出结果
+            return ('小七>>\n ' + City_Weather.search_weather(m.group(0)[:-1]))  # 输出结果
         else:
             url = 'http://www.tuling123.com/openapi/api?key=' + key + '&info=' + info  # 组成url
             res = requests.get(url)  # 得到网页HTML代码
