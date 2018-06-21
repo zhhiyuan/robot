@@ -3,7 +3,6 @@ import urllib.parse
 import re
 from random import randint
 
-
 def get_jokes():
     rule_joke = re.compile('<span id=\"text110\">([\w\W]*?)</span>')
     rule_url = re.compile('<a href=\"(.*?)\"target=\"_blank\" >')

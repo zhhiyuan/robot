@@ -6,7 +6,6 @@ import easygui as eg
 
 key = '8c657754851549ceb9f474daf9694df7'  # 图灵机器人key
 
-
 class MainWindow(QMainWindow,Ui_MainWindow):
     def __init__(self,*args,**kwargs):
         super(MainWindow,self).__init__(*args,**kwargs)
@@ -48,7 +47,10 @@ class MainWindow(QMainWindow,Ui_MainWindow):
             res = requests.get(url)  # 得到网页HTML代码
             res.encoding = 'utf-8'  # 防止中文乱码
             jd = json.loads(res.text)  # 将得到的json格式的信息转换为Python的字典格式
-            return ('小七>> \n' + jd['text'])
+            out=jd['text']
+            if out==info:
+                out='小七听不懂主人的话，不过小七会努力学习的！'
+            return ('小七>> \n' + out)
 
 if __name__ == '__main__':
     app=QApplication([])

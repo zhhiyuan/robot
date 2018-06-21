@@ -19,7 +19,7 @@ def search_weather(city):
         "\n今日着装：" + w['ganmao']) + ("\n当前温度：" + w['wendu'] + "℃")
         return str
     except:
-        return ("网址请求出错")
+        return ("系统掉线了呢...")
 
 if __name__ == '__main__':
     city = input("请输入天气地点：")
